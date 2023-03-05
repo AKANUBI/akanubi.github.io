@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>B-Plus-Tree | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;aZjYr87r1b8 太刁了，笔记回来补。留一个坑。">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>B-Plus-Tree | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;aZjYr87r1b8 太刁了，笔记回来补。留一个坑。 Hash TableQuestion： 为什么说桶的数量指数级增长？不是指针的个数指数级增长吗 bit flip是什么意思 简单来说就是，如果我们用value一个一个去compare去找我们想要的element，那会极其的低效，maybe O(n) ?。 但如果知道了index（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="B-Plus-Tree">
 <meta property="og:url" content="http://example.com/2023/02/24/B-Plus-Tree/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;aZjYr87r1b8 太刁了，笔记回来补。留一个坑。">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;aZjYr87r1b8 太刁了，笔记回来补。留一个坑。 Hash TableQuestion： 为什么说桶的数量指数级增长？不是指针的个数指数级增长吗 bit flip是什么意思 简单来说就是，如果我们用value一个一个去compare去找我们想要的element，那会极其的低效，maybe O(n) ?。 但如果知道了index（">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
 <meta property="article:published_time" content="2023-02-24T22:29:53.000Z">
-<meta property="article:modified_time" content="2023-02-24T22:30:13.980Z">
+<meta property="article:modified_time" content="2023-03-05T00:09:41.758Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/24/B-Plus-Tree/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -55,8 +55,8 @@
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2023-02-24 16:30:13'
+  isToc: true,
+  postUpdate: '2023-03-04 18:09:41'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,6 +138,196 @@
           document.documentElement.classList.remove('hide-aside')
         }
       }
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">B-Plus-Tree</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-02-24T22:29:53.000Z" title="Created 2023-02-24 16:29:53">2023-02-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-02-24T22:30:13.980Z" title="Updated 2023-02-24 16:30:13">2023-02-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="B-Plus-Tree"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=aZjYr87r1b8">https://www.youtube.com/watch?v=aZjYr87r1b8</a></p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">B-Plus-Tree</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-02-24T22:29:53.000Z" title="Created 2023-02-24 16:29:53">2023-02-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-03-05T00:09:41.758Z" title="Updated 2023-03-04 18:09:41">2023-03-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="B-Plus-Tree"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=aZjYr87r1b8">https://www.youtube.com/watch?v=aZjYr87r1b8</a></p>
 <p>太刁了，笔记回来补。留一个坑。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/02/24/B-Plus-Tree/">http://example.com/2023/02/24/B-Plus-Tree/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/26/%E6%89%98%E7%A6%8F%E8%83%8C%E6%99%AF%E5%88%86%E7%B1%BB/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">托福背景分类</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">搜索算法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/02/28/%E6%89%98%E7%A6%8F%E5%86%99%E4%BD%9C/" title="托福写作"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="托福写作"/></a><div class="content"><a class="title" href="/2023/02/28/%E6%89%98%E7%A6%8F%E5%86%99%E4%BD%9C/" title="托福写作">托福写作</a><time datetime="2023-02-28T18:07:48.000Z" title="Created 2023-02-28 12:07:48">2023-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/26/%E6%89%98%E7%A6%8F%E8%83%8C%E6%99%AF%E5%88%86%E7%B1%BB/" title="托福背景分类"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="托福背景分类"/></a><div class="content"><a class="title" href="/2023/02/26/%E6%89%98%E7%A6%8F%E8%83%8C%E6%99%AF%E5%88%86%E7%B1%BB/" title="托福背景分类">托福背景分类</a><time datetime="2023-02-26T19:04:29.000Z" title="Created 2023-02-26 13:04:29">2023-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/24/B-Plus-Tree/" title="B-Plus-Tree"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B-Plus-Tree"/></a><div class="content"><a class="title" href="/2023/02/24/B-Plus-Tree/" title="B-Plus-Tree">B-Plus-Tree</a><time datetime="2023-02-24T22:29:53.000Z" title="Created 2023-02-24 16:29:53">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" title="搜索算法"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搜索算法"/></a><div class="content"><a class="title" href="/2023/02/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" title="搜索算法">搜索算法</a><time datetime="2023-02-24T21:29:52.000Z" title="Created 2023-02-24 15:29:52">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/23/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2023/02/23/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" title="No title">No title</a><time datetime="2023-02-23T18:13:44.000Z" title="Created 2023-02-23 12:13:44">2023-02-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<h1 id="Hash-Table"><a href="#Hash-Table" class="headerlink" title="Hash Table"></a>Hash Table</h1><p>Question：</p>
+<p>为什么说桶的数量指数级增长？不是指针的个数指数级增长吗</p>
+<p>bit flip是什么意思</p>
+<p>简单来说就是，如果我们用value一个一个去compare去找我们想要的element，那会极其的低效，maybe O(n) ?。</p>
+<p>但如果知道了index（相当于知道了offset？），就可以O(1)找到我们想要的element。</p>
+<p>但如何给每个element分配这个index其实是关键，而哈希函数就是通过某种计算来分配index。这个计算，可能是关于Key的，比如ACSCII的和 mod 数组的size，那么就可以得到每个key的index。哈希函数这种计算是O(1)的，<strong>其实就相当于，知道了key，就知道了index，就可以瞬间找到element</strong></p>
+<h4 id="Hashing-Algorithm："><a href="#Hashing-Algorithm：" class="headerlink" title="Hashing Algorithm："></a><strong>Hashing Algorithm：</strong></h4><p>Calculation applied to a key to transform it into an <strong>address</strong></p>
+<p>For numeric keys, divide the key by the number of available addresses, n, and take the remainder （address &#x3D; key Mod n）</p>
+<p>For alphanumeric keys, divide the sum of ASCIl codes in a key by the number of available addresses, n, and take the remainder</p>
+<p>Folding method divides key into equal parts then adds the parts together</p>
+<p>The telephone number 01452 8345654, becomes 01+ 45+28+ 34 + 56+ 54 &#x3D; 218 Depending on size of table, may then divide by some constant and take remainder</p>
+<h4 id="Collision："><a href="#Collision：" class="headerlink" title="Collision："></a>Collision：</h4><ol>
+<li><p>线性探测&#x2F;开放寻址 （linear probing&#x2F;open addressing）</p>
+<p>当前位置没有，就往后找到第一个空的插。走到数组末尾了就返回头部。但数据多了就完蛋了，所以space必须大于数据总数。</p>
+<p>当然，线性探测有很多优化。（见书&#x2F;google）</p>
+</li>
+<li><p>chaining（closed addressing）</p>
+<p>原始index上面，每个位置是个头指针。指向一条所有index都为此index的链表</p>
+</li>
+</ol>
+<h4 id="Objectives-of-Hash-Function"><a href="#Objectives-of-Hash-Function" class="headerlink" title="Objectives of Hash Function"></a>Objectives of Hash Function</h4><ul>
+<li><p>Minimize collisions</p>
+</li>
+<li><p>Uniform distribution of hash values</p>
+</li>
+<li><p>Easy to calculate</p>
+</li>
+<li><p>Resolve any collisions</p>
+</li>
+</ul>
+<h5 id="一、哈希表"><a href="#一、哈希表" class="headerlink" title="一、哈希表"></a>一、哈希表</h5><h6 id="1、定义"><a href="#1、定义" class="headerlink" title="1、定义"></a>1、定义</h6><p>散列表(Hash table，哈希表)，是根据key而直接进行访问的数据结构。可以通过把关键字映射到表中一个位置来访问记录，以加快查找的速度。整个映射函数叫做散列函数，存放记录的数组叫做散列表，在有些文章或开源代码中也称之为slot(槽)或bucket(桶)。</p>
+<h6 id="2、原理"><a href="#2、原理" class="headerlink" title="2、原理"></a>2、原理</h6><p><img src="https://upload-images.jianshu.io/upload_images/26072190-f87bb8f521018896.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/900/format/webp" alt="img"></p>
+<p>哈希表原理.png</p>
+<h6 id="3、特点"><a href="#3、特点" class="headerlink" title="3、特点"></a>3、特点</h6><ul>
+<li>优点：通过关键实现一对一查找速度非常快</li>
+<li>缺点：存在冲突</li>
+</ul>
+<h5 id="二、分类"><a href="#二、分类" class="headerlink" title="二、分类"></a>二、分类</h5><h6 id="1、静态哈希"><a href="#1、静态哈希" class="headerlink" title="1、静态哈希"></a>1、静态哈希</h6><p>拥有固定的slot(桶)数，哈希函数对同样的key值永远映射出唯一的地址值。如果数据是固定不变的，那么静态哈希较为实用。</p>
+<h6 id="2、动态哈希"><a href="#2、动态哈希" class="headerlink" title="2、动态哈希"></a>2、动态哈希</h6><p>在哈希表定长为基础，当关键字较多时，哈希表出现聚集时，性能会急剧下降。<br> 动态哈希通常是在发生冲突后slot数量翻倍增长，而增长后毕竟哈希函数也变了，所以要把旧slot里的元素重新放置。</p>
+<h5 id="二、哈希冲突"><a href="#二、哈希冲突" class="headerlink" title="二、哈希冲突"></a>二、哈希冲突</h5><p>每个存储单元可以容纳一个或多个关键字信息，理想状态下，完美的散列函数能为关键字找到唯一的独占的桶，但大多情况下用到的散列函数是不完美的，会存在冲突。影响产生冲突多少与以下三个因素有关：</p>
+<ul>
+<li><p>散列函数是否均匀</p>
+</li>
+<li><p>处理冲突的方法</p>
+</li>
+<li><p>散列表的负载因子：填入表中的元素个数&#x2F;散列表的长度，由于表长是定值，所以填入表中的元素越多，产生冲突的可能性就越大。<br> 哈希冲突避免的方法有：</p>
+</li>
+<li><p>对于静态哈希表，有确定的策略可以找到这样的h来达到最小完美哈希。</p>
+</li>
+<li><p>对于动态哈希表，必须使用非确定性的策略来构成哈希函数h，才有可能保证避免和希冲突。<br> 哈希冲突解决的方法有：</p>
+</li>
+<li><p>开放寻址法(再散列法)：其基本思想是当关键字key哈希值value&#x3D;h(key)出现冲突时，以value为基础，产生另一个哈希值value1，如果value1仍然冲突，再以value为基础，产生另一个哈希地址value2，直到找出一个不冲突的哈希值，将相应元素存入其中。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-6125c9a00ccaa105.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/350/format/webp" alt="img"></p>
+<p>链表防溢出—开放寻址.png</p>
+</li>
+<li><p>再哈希法：这种方法同时构造多个不同的哈希函数，在发生冲突时，使用其他散列函数计算哈希值，直到冲突不再发生。</p>
+</li>
+<li><p>链地址法：对于选定的哈希表长度为m，则可将哈希表定义为一个长度为m的指针数据[0…m-1]，指针数组中的每个指针指向哈希函数结果相同的单链表。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-3ffd87abb718146d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/900/format/webp" alt="img"></p>
+<p>链表防溢出—拉链法.png</p>
+</li>
+</ul>
+<h5 id="三、动态哈希"><a href="#三、动态哈希" class="headerlink" title="三、动态哈希"></a>三、动态哈希</h5><p>动态哈希有多种实现方式：多hash表、可扩展的动态散列和线性散列。</p>
+<p>通常，当一个hash表冲突较多时，需要考虑采用动态hash方式，来减小后续擦欧总继续在该桶上的冲突，减轻该桶负担，最简单且最容易的方式就是多hash表。</p>
+<h6 id="1、多hash表"><a href="#1、多hash表" class="headerlink" title="1、多hash表"></a>1、多hash表</h6><p>多hash表即采用多个hash表的方式扩展原hash表。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-d8d6b5949fac8958.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/805/format/webp" alt="img"></p>
+<p>动态哈希—多hash表.png</p>
+<p>如图，哈希函数h(k) &#x3D; k % 5，每个桶最多含4个关键字。<br> 当插入关键字5时，哈希值为0，应该插入到Bucket1中，而且Bucket1有空闲位置，直接插入即可。<br> 当插入关键字3时，哈希值为3，应该插入到Bucket3中，但是Bucket3已满，此时新建一张哈希表来完成插入，结果如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-8bebec1bfd1322dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>动态哈希—多哈希表–扩容.png</p>
+<p>通过图可得知，原来的一个hash表分裂为两个hash表，采用折冲方式，多个hash表共用一个hash函数，且目录项的个数也随之增多，分别指向对应的桶。对于此种方式，执行插入、查找和删除操作时，均需先求得hash值value。</p>
+<ul>
+<li>插入：得到对应hash表个数，并分别获取各个hash表的value位置上的索引项，若其中某个项指向的桶存在空闲位置，则插入之。同时，在插入时，可保持过个hash表在某个索引项上桶中元素的个数近似相等。若不存在空闲位置，则简单进行表分裂。</li>
+<li>查找：由于某个记录值可能存在当前hash结构的多个表中，因此需同时在多个hash表的同一个位置上进行查找操作，等待所有的查找结束后，方可判断元素是否存在。</li>
+<li>删除：与查找流程类似。需要注意的是，若删除操作导致某个hash表元素为空，此时可将该表从结构中剔除。<br> 此方式优点是：思想简单，实现不复杂。缺点：分裂导致内存占用较大；当数据集中是，桶利用率很低。</li>
+</ul>
+<h6 id="2、可扩展的动态散列"><a href="#2、可扩展的动态散列" class="headerlink" title="2、可扩展的动态散列"></a>2、可扩展的动态散列</h6><p>引入一个仅存储桶指针的索引数组，用翻倍的索引项数来代替翻倍的桶的数目，且每次值分裂有益处的桶，从而减少翻倍的代价。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-cece2355684c1f58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/808/format/webp" alt="img"></p>
+<p>动态哈希—可扩展的动态散列.png</p>
+<p>全局位深度(Global Depth)：表示取哈希值的低几位作为索引，如hash(k) &#x3D;&#x3D; 0100，全局深度为2，则取低两位00归属到00索引的桶中，而且哈希表索引项索引项数始终等于2^Global Depth。<br> 本地位深度(Local Depth)：每个桶有一个本地位深度，表示当前桶中元素的低几位是一样的。</p>
+<ul>
+<li><p>插入：计算出哈希值，在根据全局位深度匹配索引项，如果找到的桶未满，则直接插入即可；如果桶已满，则判断当前桶的本地深度L与全局位深度G的大小关系：如果L&#x3D;&#x3D;G，此时只有一个指针指向当前桶，则扩展索引，本地位深度和全局位深度均+1，索引项翻倍，重组当前桶的元素；如果L&lt;G，此时不止一个指针指向当前桶，故不需要翻倍索引项，只需分裂出一个桶，将本地位深度+1，然后重组当前桶元素即可。</p>
+</li>
+<li><p>查找：计算key对应的哈希值value，根据当前hash表的全局位深度，对value取其后G位，位数不够用0填充，找到对应的索引项，从而找到对应的桶，在桶中逐一进行比较</p>
+</li>
+<li><p>删除：先查找定位元素，然后删除。如果删除后桶为空，则可以将该桶预期兄弟桶进行合并，并使局部位深度-1。</p>
+</li>
+<li><p>分裂示例：<br> 当插入key&#x3D;13时，hash(13) &#x3D;&#x3D; 1101，对应索引01的桶Bucket2未满直接插入；<br> 再插入key&#x3D;20时，hash(20) &#x3D;&#x3D; 10100，对应索引00的桶Bucket1已满，且桶本地位深度等于全局位深度，需要扩展索引，全局位深度和本地位深度均+1，并重组当前桶的元素。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-d9286ecf1c4130f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/810/format/webp" alt="img"></p>
+<p>动态哈希—可扩展的动态散列–分裂.png</p>
+</li>
+<li><p>分裂示例<br> 继续插入key&#x3D;25时，hash(25) &#x3D;&#x3D; 11001，对应索引001的桶Bucket2，桶已满且本地位深度小于全局位深度，当前桶存在两个指针，只需要分裂出一个桶即可，并将桶的本地位深度+1，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-2a94f4e88180f2a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/810/format/webp" alt="img"></p>
+<p>动态哈希—可扩展的动态散列—再分裂.png</p>
+<p>可扩展的动态散列可动态进行桶的增长，且增长的同时，用索引项的翻倍代替桶数翻倍的传统方法，可用性更好；缺点是当散列的数据分布不均或偏斜较大时，会使得索引项数目很大数据桶的利用率低，还有索引的增长速度是指数级，扩展较快。</p>
+</li>
+</ul>
+<h6 id="3、线性散列"><a href="#3、线性散列" class="headerlink" title="3、线性散列"></a>3、线性散列</h6><p>线性散列能随数据的插入或删除，适当的对hash桶数进行调整，一次只分裂一个桶，线性散列不需要存放数据桶指针的专门索引项，且能够自然的处理数据桶已满的情况，允许更灵活的选择桶分裂的实际。<br> 轮转分裂进化：各个桶轮流进行分裂，当一轮分裂完成之后，进行下一轮分裂，于是分裂从头开始。用Level表示当前的轮数，其值从0开始。假定哈希表初始桶数为N，则值LogN(2为底)是指表示N个数需要的最少二进制位数。</p>
+<ul>
+<li><p>概念</p>
+<ul>
+<li>h0,h1…：一系列哈希函数，后者的范围总是前者的两倍</li>
+<li>N：桶的初始个数，必须是2的幂次方</li>
+<li>di：多少比特位用于表示N，N&#x3D;2di</li>
+<li>Level：当前轮数，没轮的初始桶数等于N*2level</li>
+<li>Next：一个指针指向需要分裂的桶，每次发生分裂的桶总是有Next决定，与当前值被插入的桶已满或溢出无关</li>
+<li>Load Factor：负载因子，当桶中记录数达到该值时进行分裂；也可以选择桶满时才进行分裂。<br> 当某个桶发生溢出时，可以将溢出元素以链表的形式链在桶后；可以监控整张哈希表或桶的负载因子，视情况选择是否分裂。</li>
+</ul>
+</li>
+<li><p>插入示例</p>
+<ul>
+<li><p>初始状态N&#x3D;4，Level&#x3D;0，Next指向第一个桶</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-75fee2d09186e1d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/657/format/webp" alt="img"></p>
+<p>动态哈希–线性散列–初始状态.png</p>
+</li>
+<li><p>插入key&#x3D;37，hash(37) &#x3D; 37 &#x3D; 100101，h</p>
+<p>0</p>
+<p>(37)&#x3D;01(取低两位)，对应编号1的桶，此时桶未满直接插入</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-c5219c762c768f59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/658/format/webp" alt="img"></p>
+<p>动态哈希—线性散列—未满直接插入.png</p>
+</li>
+<li><p>插入key&#x3D;43，hash(43) &#x3D; 43 &#x3D; 101011，h</p>
+<p>0</p>
+<p>(43)&#x3D;11(取低两位)，对应编号3的桶，此时桶已满需要分裂：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-c717df67f5a8e6fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/913/format/webp" alt="img"></p>
+<p>动态哈希–线性散列–已满分裂.png</p>
+<ul>
+<li>首先把43链在桶3后面</li>
+<li>然后分裂Next指向的桶0，产生一个新桶，桶的编号&#x3D;N+Next&#x3D;4+0&#x3D;100，Next指向下一个桶；最后把桶0的元素按照h1散列重组</li>
+</ul>
+</li>
+<li><p>继续插入key&#x3D;29，hash(29) &#x3D; 29 &#x3D; 11101，h</p>
+<p>0</p>
+<p>(29)&#x3D;01(取低两位)，对应编号1的桶，此时桶进行分裂，不过这次Next指向的桶就是当前桶</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-ce1de43284d9c24a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/908/format/webp" alt="img"></p>
+<p>动态哈希—先行散列—再分裂2.png</p>
+</li>
+<li><p>向桶中连续插入17、33、41，引起分裂</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-90a1c876b5d4c3da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/909/format/webp" alt="img"></p>
+<p>动态哈希—线性散列—分裂3.png</p>
+</li>
+<li><p>继续向桶1插入57，引起分裂，需要注意这时Next指针已经遍历 过初始桶的四个桶，第一轮结束，Level+1，Next指向第一个桶，第二轮初始为八个桶N&#x3D;8</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-594c0bee0b8cdc0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1067/format/webp" alt="img"></p>
+<p>动态哈希—线性散列—第一轮完毕.png</p>
+</li>
+</ul>
+</li>
+<li><p>查找示例</p>
+<p>假如要查找某个关键字key对应的位置，如果Next&lt;&#x3D;h</p>
+<p>Level</p>
+<p>(Key)&lt;&#x3D;N-1，则查找h</p>
+<p>Level</p>
+<p>列的与低d</p>
+<p>i</p>
+<p>位对应的桶，否则查找h</p>
+<p>Level+1</p>
+<p>列的与低d</p>
+<p>i</p>
+<p>+1位对应的桶。</p>
+<p>此图中N&#x3D;4，Level&#x3D;0，Next&#x3D;2，d</p>
+<p>0</p>
+<p>&#x3D;2</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-f6b931f3e1ea2b42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/911/format/webp" alt="img"></p>
+<p>动态哈希—线性散列—查找1.png</p>
+<ul>
+<li><p>比如查询 key&#x3D;44，h0(44) &#x3D; 00，00(&#x3D; 0) 不在 2 和 3 之间，则查询 h1 列与 44 低三位 (100) 对应的桶，找到编号为 4 的桶，再从桶找到对应位置；</p>
+</li>
+<li><p>假如查询的是 key&#x3D;7，h</p>
+<p>0</p>
+<p>(7) &#x3D; 11，11(&#x3D; 3) 在 2 和 3 之间，则查询 h0 列与 7 低两位 (11) 对应的桶，找到编号为 3 的桶，再从桶中找到对应位置</p>
+<p>在此图中 N &#x3D; 8，Level &#x3D; 1，Next &#x3D; 0，d</p>
+<p>1</p>
+<p> &#x3D; 3</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/26072190-27e1663cf6bc796b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1065/format/webp" alt="img"></p>
+<p>动态哈希—线性散列—查找2.png</p>
+</li>
+<li><p>假如查询 key&#x3D;44，h1(44) &#x3D; 100，100(&#x3D; 4) 在 0 和 7 之间，所以查询 h1 列与 100 对应的桶，即编号为 4 的桶；</p>
+</li>
+</ul>
+</li>
+<li><p>删除：删除操作是插入操作的逆操作，若溢出块为空，则可释放。若删除导致某个桶元素变空，则 Next 指向上一个桶。当 Next 减少到 0，且最后一个桶也是空时，则 Next 指向 N&#x2F;2 - 1 的位置，同时 Level 值减 1。<br> 线性散列比可扩展动态散列更灵活，且不需要存放数据桶指针的专门索引项，节省了空间；但如果数据散列后分布不均匀，导致的问题可能会比可扩展散列还严重</p>
+</li>
+</ul>
+<h5 id="四、动态大小调整"><a href="#四、动态大小调整" class="headerlink" title="四、动态大小调整"></a>四、动态大小调整</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">随着哈希表的装载因子上升，哈希冲突的概率会不断上升，直到装载因子超过 1 时，必然发生哈希冲突（抽屉原理）。对于动态哈希表，由于 U 的大小不能预先得知，所以必然需要动态调整哈希表的大小。常见的策略是当装载因子超过某一阈值后，线性扩展哈希表的大小为原来的若干倍；当装载因子低于某一阈值时，线性收缩哈希表的大小为原来的若干分之一。使用两个阈值的原因是为了避免抖动。由于 R 发生变化，因此对应的哈希函数也必须发生变化。调整大小时，另行分配内存，然后将原哈希表中的所有元素 <span class="built_in">rehash</span> 后存储到新的哈希表中，这种策略称为 Copy All 策略。尽管该操作可以均摊到插入操作中，使得整体的均摊时间复杂度仍为一个常数，但是这一策略会带来较长时间的停顿。为了改善这一问题，又有其他改进策略，其中较为知名的有：</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Linear Hashing：同时使用 2 个哈希函数来解决动态调整大小的问题<br> 当哈希数组需要扩张大小时，从前向后进行，当前正在扩张的 bucket 下标记为 p。对于在 p 之前的位置，使用hi+1，对于 p 及其之后的位置仍然使用 hi。这样就可以非常平滑的，每次操作只扩张一个 bucket，而不需要把所有的元素都 rehash。 不过这样做有一个缺点，就是有可能有一个位置上比较靠后的 bucket 一直比较拥挤，经过很多次插入后，才能对这个 bucket 进行扩张以缓解性能下降。对于这一问题，Spiral Storage 的方法处理的比较好。</li>
+<li>Spiral Storage<br> Spiral Storage 总是将负载更多的放在哈希表靠前的位置上，而非均匀地将负载分配到整个哈希表中。这样尽管是像 Linear Hashing 一样，总是从哈希表的头部开始进行 bucket 的分裂，也不会有不及时处理非常满的 bucket 的问题。<br> Spiral Storage 的思路是这样的。哈希表的负载从前向后逐渐降低；扩展大小时，需要将表头的 bucket 中的元素分配到多个新 bucket 中并添加到哈希表的末尾，并且依然保持负载从前向后逐渐下降的性质。假设每去掉表头的一个 bucket 就添加 d 个新 bucket，称 d 为哈希表的增长因子。考虑到哈希表是非线性增加大小的，应该采用一个非线性增长的哈希函数族，将 U 映射到 R。易发现指数函数满足这样的性质。</li>
+<li>Extendible Hashing<br> 将 bucket 和 bucket 的索引分别存放，使用 bucket 对应 key 的前缀对其进行索引，这样在扩展哈希表的大小时，就无需复制所有对象调整索引部分即可</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/02/24/B-Plus-Tree/">http://example.com/2023/02/24/B-Plus-Tree/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/26/%E6%89%98%E7%A6%8F%E8%83%8C%E6%99%AF%E5%88%86%E7%B1%BB/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">托福背景分类</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">搜索算法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hash-Table"><span class="toc-number">1.</span> <span class="toc-text">Hash Table</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hashing-Algorithm%EF%BC%9A"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Hashing Algorithm：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Collision%EF%BC%9A"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">Collision：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Objectives-of-Hash-Function"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">Objectives of Hash Function</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">1.0.0.3.1.</span> <span class="toc-text">一、哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">1.0.0.3.1.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.0.0.3.1.2.</span> <span class="toc-text">2、原理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3%E3%80%81%E7%89%B9%E7%82%B9"><span class="toc-number">1.0.0.3.1.3.</span> <span class="toc-text">3、特点</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%86%E7%B1%BB"><span class="toc-number">1.0.0.3.2.</span> <span class="toc-text">二、分类</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E9%9D%99%E6%80%81%E5%93%88%E5%B8%8C"><span class="toc-number">1.0.0.3.2.1.</span> <span class="toc-text">1、静态哈希</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E5%8A%A8%E6%80%81%E5%93%88%E5%B8%8C"><span class="toc-number">1.0.0.3.2.2.</span> <span class="toc-text">2、动态哈希</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="toc-number">1.0.0.3.3.</span> <span class="toc-text">二、哈希冲突</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8A%A8%E6%80%81%E5%93%88%E5%B8%8C"><span class="toc-number">1.0.0.3.4.</span> <span class="toc-text">三、动态哈希</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E3%80%81%E5%A4%9Ahash%E8%A1%A8"><span class="toc-number">1.0.0.3.4.1.</span> <span class="toc-text">1、多hash表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%E5%8A%A8%E6%80%81%E6%95%A3%E5%88%97"><span class="toc-number">1.0.0.3.4.2.</span> <span class="toc-text">2、可扩展的动态散列</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3%E3%80%81%E7%BA%BF%E6%80%A7%E6%95%A3%E5%88%97"><span class="toc-number">1.0.0.3.4.3.</span> <span class="toc-text">3、线性散列</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8A%A8%E6%80%81%E5%A4%A7%E5%B0%8F%E8%B0%83%E6%95%B4"><span class="toc-number">1.0.0.3.5.</span> <span class="toc-text">四、动态大小调整</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/%E4%BA%8C%E5%8F%89%E6%A0%91/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2023/03/05/%E4%BA%8C%E5%8F%89%E6%A0%91/" title="No title">No title</a><time datetime="2023-03-05T17:24:36.476Z" title="Created 2023-03-05 11:24:36">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/28/%E6%89%98%E7%A6%8F%E5%86%99%E4%BD%9C/" title="托福写作"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="托福写作"/></a><div class="content"><a class="title" href="/2023/02/28/%E6%89%98%E7%A6%8F%E5%86%99%E4%BD%9C/" title="托福写作">托福写作</a><time datetime="2023-02-28T18:07:48.000Z" title="Created 2023-02-28 12:07:48">2023-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/26/%E6%89%98%E7%A6%8F%E8%83%8C%E6%99%AF%E5%88%86%E7%B1%BB/" title="托福背景分类"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="托福背景分类"/></a><div class="content"><a class="title" href="/2023/02/26/%E6%89%98%E7%A6%8F%E8%83%8C%E6%99%AF%E5%88%86%E7%B1%BB/" title="托福背景分类">托福背景分类</a><time datetime="2023-02-26T19:04:29.000Z" title="Created 2023-02-26 13:04:29">2023-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/24/B-Plus-Tree/" title="B-Plus-Tree"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B-Plus-Tree"/></a><div class="content"><a class="title" href="/2023/02/24/B-Plus-Tree/" title="B-Plus-Tree">B-Plus-Tree</a><time datetime="2023-02-24T22:29:53.000Z" title="Created 2023-02-24 16:29:53">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" title="搜索算法"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搜索算法"/></a><div class="content"><a class="title" href="/2023/02/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" title="搜索算法">搜索算法</a><time datetime="2023-02-24T21:29:52.000Z" title="Created 2023-02-24 15:29:52">2023-02-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
